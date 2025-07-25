@@ -19,7 +19,7 @@ func main() {
 
 	// вот эту хуйню снизу переделать
 	connDB, ctx := db.InitConnDb(log)
-	defer connDB.Close(ctx)
+	defer connDB.Close()
 
 	//TODO: инициализировать обьект приложения app??? думаю не надо посмотрим
 
@@ -29,7 +29,7 @@ func main() {
 	}
 
 	grpcServer := grpc.NewServer()
-	server.Register(grpcServer)
+	server.Register(grpcServer, connDB, ctx)
 
 	log.Info("Auth gRPC server is running on port" + strconv.Itoa(cfg.GRPC.Port) + "...")
 	if err := grpcServer.Serve(lis); err != nil {
