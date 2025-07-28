@@ -30,3 +30,4 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- есть таблица \dt и функция \df
+-- docker stop postgres-clear
